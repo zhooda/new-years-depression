@@ -5,9 +5,18 @@ const daysUnit = document.querySelector('.days');
 const hoursUnit = document.querySelector('.hours');
 const minutesUnit = document.querySelector('.minutes');
 const secondsUnit = document.querySelector('.seconds');
+const msg = document.querySelector('.nymsg');
 
 const startDate = new Date(2020, 0, 1, 00, 00, 00).getTime();
 startDate > Date.now() ? timer(startDate) : calculateFutureDate(startDate);
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
 function timer(date) {
 
@@ -18,6 +27,9 @@ function timer(date) {
         if (differenceInTime < 0) {
             clearInterval(countdown);
             clock.classList.add("hide")
+            msg.classList.remove("hide")
+            console.log("new year")
+            location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ?t=43")
             serviceInSession = setTimeout(()=>{
                 calculateFutureDate(date);
                 clock.classList.remove("hide")
